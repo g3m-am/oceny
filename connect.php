@@ -5,4 +5,3 @@
 	$db_password = "(kbx)@123AM";
 	$db_name = "andmor_kbxout";
 
-?>
