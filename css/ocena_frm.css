@@ -1,41 +1,32 @@
 body
 {
+	/*background-color: #c9e8f8;*/
 	background-image: url("/img/hexellence.png");
 	/*margin: 0;*/
 	/*padding: 0px 60px;*/
 	/*background-color: #eeeeee;*/
 	/*color: #7b8e4d;*/
     /*font-family: 'Open Sans', sans-serif;*/
-    /*font-size: 10px;*/
+	font-family: Calibri, Helvetica, sans-serif;
+    font-size: 16px;
 
 }
 
-h5
-{
-	font-size: 3px;
-	font-weight: 20;
-	color: #4733fa;
-	margin-bottom: 20px;
-	text-align: center;
-}
+/*h5*/
+/*{*/
+/*	font-size: 3px;*/
+/*	font-weight: 20;*/
+/*	color: #4733fa;*/
+/*	margin-bottom: 20px;*/
+/*	text-align: center;*/
+/*}*/
 
-.row
-{
-	margin: 20px 10px;
-}
+/*#komentarz*/
+/*{*/
+/*	resize: none;*/
+/*}*/
 
-.col
-{
-	display: inline-block;
-	margin: 0 10px;
-}
-
-#komentarz
-{
-	resize: none;
-}
-
-#komentarz2
-{
-	resize: none;
-}
+/*#komentarz2*/
+/*{*/
+/*	resize: none;*/
+/*}*/

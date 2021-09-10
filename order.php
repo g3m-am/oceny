@@ -5,6 +5,7 @@ if (!isset($_SESSION['logged_id'])) {
 	if (isset($_POST['login'])) {
 		exit();
 	}
+
 }
 	
 	$idkier = $_SESSION['logged_kier'];
@@ -27,14 +28,11 @@ if (!isset($_SESSION['logged_id'])) {
 	$idprac = $_POST['idprac'];
 	$nazwa = $_POST['nazwa'];
 	$zawod = $_POST['zawod'];
-	
-//if ($ocena1 == 0)
-//{
-//    echo "wartosc 0";
-//} else {
-//    var_dump($ocena1);
-//}
 
+if (trim($zawod) == '') {
+    header('Location: list.php');
+    exit();
+}
                     require_once 'database.php';
 					
 					$sql = $db->prepare('SELECT id_prac, id_bud, id_kier FROM lista a WHERE id_kier=:idkier and id_prac=:idprac and akcept=0');
@@ -85,7 +83,7 @@ if (!isset($_SESSION['logged_id'])) {
 		}
 	
 
-	?>
+        ?>
 
 <!DOCTYPE HTML>
 <html lang="pl">
