@@ -10,8 +10,12 @@ if (!isset($_SESSION['logged_id'])) {
 	
 	$idkier = $_SESSION['logged_kier'];
 
+    $zawod = $_POST['zawod'];
+    $_SESSION['zawod'] = $zawod;
 
 	$ocena1 = $_POST['ocena1'];
+    $_SESSION['$ocena1'] = $ocena1;
+
 	$ocena2 = $_POST['ocena2'];	
 	$ocena3 = $_POST['ocena3'];
 	$ocena4 = $_POST['ocena4'];	
@@ -27,12 +31,13 @@ if (!isset($_SESSION['logged_id'])) {
 	$komentarz2 = $_POST['komentarz2'];		
 	$idprac = $_POST['idprac'];
 	$nazwa = $_POST['nazwa'];
-	$zawod = $_POST['zawod'];
 
-if (trim($zawod) == '') {
-    header('Location: list.php');
-    exit();
-}
+
+
+    $isOk = $_POST['isOk'];
+
+
+
                     require_once 'database.php';
 					
 					$sql = $db->prepare('SELECT id_prac, id_bud, id_kier FROM lista a WHERE id_kier=:idkier and id_prac=:idprac and akcept=0');
@@ -46,6 +51,89 @@ if (trim($zawod) == '') {
 	
 		
 		if ($idprac > 0){
+
+            if (trim($zawod) == '') {
+                $isOk = false;
+                $_SESSION['e_zawod']="zawód wymagany";
+                header('Location: list.php');
+                exit();
+            }
+            else
+            {
+                unset($_SESSION['e_zawod']);
+            }
+
+            if (trim($ocena1) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena1']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena2) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena2']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena3) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena3']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena4) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena4']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena5) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena5']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena6) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena6']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena7) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena7']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena8) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena8']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena9) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena9']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+            if (trim($ocena10) == '0') {
+                $isOk = false;
+                $_SESSION['e_ocena10']="pole wymagane";
+                header('Location: list.php');
+                exit();
+            }
+
+
 		require_once 'database.php';
 		
 		$userQuery = $db->prepare('UPDATE lista set akcept=1 WHERE id_prac = :idprac and  id_kier = :idkier and  id_bud = :idbud and akcept=0');
@@ -71,7 +159,9 @@ if (trim($zawod) == '') {
 					$sql->execute();
 					
 					$user = $sql->fetch();
-		}
+
+
+        }
 		else
 		{
 			echo "Lista jest pusta!!!";

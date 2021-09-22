@@ -1,12 +1,14 @@
 <?php
         session_start();
 
-        if (isset($_SESSION['logged_id'])) {
-        header('Location: list.php');
-        exit();
+        if (isset($_SESSION['logged_id']))
+        {
+            header('Location: list.php');
+            exit();
         }
-
         ?>
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>

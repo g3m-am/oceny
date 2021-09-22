@@ -1,10 +1,11 @@
 <?php
-
 	session_start();
-	
+
 	require_once 'env.php';
 	
 	require_once 'database.php';
+
+
 
 if (!isset($_SESSION['logged_id'])) {
 
@@ -15,6 +16,7 @@ if (!isset($_SESSION['logged_id'])) {
 
 		$_SESSION['lista'] = 0;
 
+        $isOk = true;
 
 		$userQuery = $db->prepare('SELECT id, password, id_kier FROM users WHERE login = :login');
 		$userQuery->bindValue(':login', $login, PDO::PARAM_STR);
@@ -149,12 +151,21 @@ if (!isset($_SESSION['logged_id'])) {
 
             <div align="left">
                 <td>
-                    <label for="komentarz"  style="width:215px"> Pracownik oceniany jest w zawodzie </label>
+                    <label for="komentarz" > Pracownik oceniany jest w zawodzie <i class="fa fa-star"></i></label>
                 </td>
             </div>
             <td>
+
                 <textarea name="zawod" id="komentarz" style="width:295px;resize:none;height:20px;"></textarea>
             </td>
+
+
+            <?php
+			if (isset($_SESSION['e_zawod']))
+			{
+				echo '<td class="error">'.$_SESSION['e_zawod'].'</td>';
+            }
+            ?>
     </div>
 
     </tr>
@@ -177,6 +188,13 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                         </td>
+                        <?php
+                        if (isset($_SESSION['e_ocena1']))
+                        {
+                            echo '<td class="error">'.$_SESSION['e_ocena1'].'</td>';
+                            unset($_SESSION['e_ocena1']);
+                        }
+                        ?>
                     </div>
 				</div>
 
@@ -199,6 +217,13 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					</select>
                     </td>
+                    <?php
+                    if (isset($_SESSION['e_ocena2']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena2'].'</td>';
+                        unset($_SESSION['e_ocena2']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -219,6 +244,13 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					</select>
                     </td>
+                    <?php
+                    if (isset($_SESSION['e_ocena3']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena3'].'</td>';
+                        unset($_SESSION['e_ocena3']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -239,6 +271,13 @@ if (!isset($_SESSION['logged_id'])) {
 
     					</select>
                     </td>
+                    <?php
+                    if (isset($_SESSION['e_ocena4']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena4'].'</td>';
+                        unset($_SESSION['e_ocena4']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -258,6 +297,13 @@ if (!isset($_SESSION['logged_id'])) {
 					
     					</select>
                     </td>
+                    <?php
+                    if (isset($_SESSION['e_ocena5']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena5'].'</td>';
+                        unset($_SESSION['e_ocena5']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -278,6 +324,13 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                     </td>
+                    <?php
+                    if (isset($_SESSION['e_ocena6']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena6'].'</td>';
+                        unset($_SESSION['e_ocena6']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -298,7 +351,14 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                     </td>
-				
+
+                    <?php
+                    if (isset($_SESSION['e_ocena7']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena7'].'</td>';
+                        unset($_SESSION['e_ocena7']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -319,7 +379,14 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                     </td>
-				
+
+                    <?php
+                    if (isset($_SESSION['e_ocena8']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena8'].'</td>';
+                        unset($_SESSION['e_ocena8']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -339,6 +406,14 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                     </td>
+
+                    <?php
+                    if (isset($_SESSION['e_ocena9']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena9'].'</td>';
+                        unset($_SESSION['e_ocena9']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -358,6 +433,14 @@ if (!isset($_SESSION['logged_id'])) {
 					
 					    </select>
                     </td>
+
+                    <?php
+                    if (isset($_SESSION['e_ocena10']))
+                    {
+                        echo '<td class="error">'.$_SESSION['e_ocena10'].'</td>';
+                        unset($_SESSION['e_ocena10']);
+                    }
+                    ?>
 				</div>
     </tr>
     <p></p>
@@ -404,17 +487,18 @@ if (!isset($_SESSION['logged_id'])) {
 <!--                        </form>-->
                     </td>
 				</div>
+
+        <td>
+        <a href="logout.php" style="color: #fa5800; ">koniec
+            <!--                    <img src="/img/Alien.png"  style="width:42px;height:42px;">-->
+            <i class="fa fa-download"></i>
+        </a>
+        </td>
+
     </tr>
 
 
 </table>
-
-                <a href="logout.php" style="color: #fa5800; ">koniec
-<!--                    <img src="/img/Alien.png"  style="width:42px;height:42px;">-->
-                    <i class="fa fa-download"></i>
-                </a>
-
-<!--                <button type="submit" style="font-size:24px">koniec <i class="fa fa-download"></i></button>-->
 
             </form>
 			
