@@ -1,15 +1,38 @@
 <?php
-	session_start();
+
+    session_start();
 
 	require_once 'env.php';
 	
 	require_once 'database.php';
 
 
-
 if (!isset($_SESSION['logged_id'])) {
 
+
+
 	if (isset($_POST['login'])) {
+
+//        $zawod = $_POST['zawod'];
+//        $_SESSION['zawod'] = $zawod;
+//
+//        $ocena1 = $_POST['ocena1'];
+//        $_SESSION['$ocena1'] = $ocena1;
+//
+//        $ocena2 = $_POST['ocena2'];
+//        $ocena3 = $_POST['ocena3'];
+//        $ocena4 = $_POST['ocena4'];
+//        $ocena5 = $_POST['ocena5'];
+//        $ocena6 = $_POST['ocena6'];
+//        $ocena7 = $_POST['ocena7'];
+//        $ocena8 = $_POST['ocena8'];
+//        $ocena9 = $_POST['ocena9'];
+//        $ocena10 = $_POST['ocena10'];
+//        $komentarz1 = $_POST['komentarz1'];
+//        $komentarz2 = $_POST['komentarz2'];
+
+
+
 
 		$login = filter_input(INPUT_POST, 'login');
 		$password = filter_input(INPUT_POST, 'pass');
@@ -35,6 +58,9 @@ if (!isset($_SESSION['logged_id'])) {
 
 			$userQuery = $db->prepare("INSERT INTO tmp (id, idid, ip, login_time) VALUES (null, '$idkier','$ip', '$time_in')");
 			$userQuery->execute();
+
+
+
 		}
 		else
 		{
@@ -90,7 +116,8 @@ if (!isset($_SESSION['logged_id'])) {
                 </div>
 
 				<?php
-					
+
+
 					$sql = $db->prepare("SET CHARSET 'utf8'");
 					$sql = $db->prepare("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 					$sql = $db->prepare('SELECT a.id_prac, CONCAT(nazwisko, " ", imie) as nazwa, b.nazwa_skr as budowa,a.id_bud, a.id_kier as id_kier, data_od , data_do FROM lista a 
@@ -109,10 +136,21 @@ if (!isset($_SESSION['logged_id'])) {
 						
 						$_SESSION['logged_bud'] = $user['id_bud'];
 						$idbud = $user['id_bud'];
-						
-						
-											
-						$_SESSION['lista'] = 1;
+
+                        $zawod = $_SESSION['zawod'] ;
+//                        $_SESSION['zawod'] = $zawod;
+                        $ocena1 = $_SESSION['$ocena1'] ;
+                        $ocena2 = $_SESSION['$ocena2'] ;
+                        $ocena3 = $_SESSION['$ocena3'] ;
+                        $ocena4 = $_SESSION['$ocena4'] ;
+                        $ocena5 = $_SESSION['$ocena5'] ;
+                        $ocena6 = $_SESSION['$ocena6'] ;
+                        $ocena7 = $_SESSION['$ocena7'] ;
+                        $ocena8 = $_SESSION['$ocena8'] ;
+                        $ocena9 = $_SESSION['$ocena9'] ;
+                        $ocena10 = $_SESSION['$ocena10'] ;
+
+                        $_SESSION['lista'] = 1;
 						
 						echo '<select id="ocena" name="idprac">';
 
@@ -149,14 +187,14 @@ if (!isset($_SESSION['logged_id'])) {
 
 
 
-            <div align="left">
+            <div >
                 <td>
-                    <label for="komentarz" > Pracownik oceniany jest w zawodzie <i class="fa fa-star"></i></label>
+                    <label for="komentarz" > Pracownik oceniany jest w zawodzie </label>
                 </td>
             </div>
             <td>
 
-                <textarea name="zawod" id="komentarz" style="width:295px;resize:none;height:20px;"></textarea>
+                <input type="text" name="zawod" id="komentarz" style="width:295px;resize:none;height:20px;" value="<?php echo $zawod; ?>" required></input>
             </td>
 
 
@@ -178,9 +216,10 @@ if (!isset($_SESSION['logged_id'])) {
                         </td>
 
                         <td>
-					    <select id="ocena" name="ocena1" style="width: 300px">
 
-                            <option value="0"></option>
+					    <select id="ocena" name="ocena1" style="width: 300px" required>
+
+                            <option value="0" </option>
                             <option value="1">bardzo dobra</option>
                             <option value="2">dobra</option>
                             <option value="3">dostateczna</option>
@@ -207,7 +246,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					<select id="ocena" name="ocena2" style="width: 300px">
+					<select id="ocena" name="ocena2" style="width: 300px" required>
 
                         <option value="0"></option>
 						<option value="1">bardzo dobra</option>
@@ -234,7 +273,7 @@ if (!isset($_SESSION['logged_id'])) {
 					<label for="ocena"> Wydajność pracy</label>
                 </td>
                     <td>
-					<select id="ocena" name="ocena3" style="width: 300px">
+					<select id="ocena" name="ocena3" style="width: 300px" required>
 
                         <option value="0"></option>
 						<option value="1">bardzo dobra</option>
@@ -261,7 +300,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-    					<select id="ocena" name="ocena4" style="width: 300px">
+    					<select id="ocena" name="ocena4" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="1">bardzo dobra</option>
@@ -287,7 +326,7 @@ if (!isset($_SESSION['logged_id'])) {
 					    <label for="ocena"> Umiejętność współpracy z otoczeniem </label>
                     </td>
                     <td>
-					    <select id="ocena" name="ocena5" style="width: 300px">
+					    <select id="ocena" name="ocena5" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="1">bardzo dobra</option>
@@ -314,7 +353,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <select id="ocena" name="ocena6" style="width: 300px">
+					    <select id="ocena" name="ocena6" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="1">bardzo dobra</option>
@@ -341,7 +380,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <select id="ocena" name="ocena7" style="width: 300px">
+					    <select id="ocena" name="ocena7" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="1">bardzo dobra</option>
@@ -369,7 +408,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <select id="ocena" name="ocena8" style="width: 300px">
+					    <select id="ocena" name="ocena8" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="1">bardzo dobra</option>
@@ -397,7 +436,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <select id="ocena" name="ocena9" style="width: 300px">
+					    <select id="ocena" name="ocena9" style="width: 300px" required>
 
                         <option value="0"></option>
 						<option value="TAK">TAK</option>
@@ -424,7 +463,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <select id="ocena" name="ocena10" style="width: 300px">
+					    <select id="ocena" name="ocena10" style="width: 300px" required>
 
                             <option value="0"></option>
                             <option value="ROSZCZENIOWA">ROSZCZENIOWA</option>
@@ -477,7 +516,7 @@ if (!isset($_SESSION['logged_id'])) {
                     </td>
 
                     <td>
-					    <input type="reset" value="Wyczyść formularz" style="width: 150px;">
+<!--					    <input type="reset" value="Wyczyść formularz" style="width: 150px;">-->
 <!--                    </td>-->
 <!---->
 <!--                    <td>-->

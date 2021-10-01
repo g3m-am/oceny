@@ -51,7 +51,7 @@ if (!isset($_SESSION['logged_id'])) {
 	
 		
 		if ($idprac > 0){
-
+            $isOk = true;
             if (trim($zawod) == '') {
                 $isOk = false;
                 $_SESSION['e_zawod']="zawód wymagany";
@@ -60,6 +60,7 @@ if (!isset($_SESSION['logged_id'])) {
             }
             else
             {
+                $_SESSION['zawod']= $zawod;
                 unset($_SESSION['e_zawod']);
             }
 
